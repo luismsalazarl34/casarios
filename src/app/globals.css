@@ -1,26 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base — cool parchment, NOT warm cream */
+  --bg-base: #F1EFE9;
+  --bg-surface: #E8E5DC;
+  --bg-card: #FAFAF7;
+  --bg-elevated: #DDDAD0;
+
+  /* Forest green — primary accent */
+  --forest: #2D5A3D;
+  --forest-mid: #4A7A5C;
+  --forest-light: #8AB89A;
+  --forest-pale: #D6E8DB;
+  --forest-super-pale: #EEF5F0;
+
+  /* Terracotta — secondary, used sparingly */
+  --terra: #B85C35;
+  --terra-light: #DCA080;
+  --terra-pale: #F0DDD3;
+
+  /* Text */
+  --text-ink: #15110B;
+  --text-mid: #4A3D2E;
+  --text-faint: #9A8E7E;
+
+  /* Borders */
+  --rule: rgba(45,90,61,0.15);
+  --rule-strong: rgba(45,90,61,0.30);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-forest: var(--forest);
+  --color-forest-mid: var(--forest-mid);
+  --color-forest-light: var(--forest-light);
+  --color-forest-pale: var(--forest-pale);
+  --color-terra: var(--terra);
+  --color-terra-light: var(--terra-light);
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-card: var(--bg-card);
+  --color-text-ink: var(--text-ink);
+  --color-text-mid: var(--text-mid);
+  --color-text-faint: var(--text-faint);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--forest-light); border-radius: 2px; }
+
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+.font-mono { font-family: 'DM Mono', 'Courier New', monospace; }
+
+/* Editorial gradient — green tones */
+.text-forest-gradient {
+  background: linear-gradient(135deg, #1E3D29 0%, #2D5A3D 50%, #4A7A5C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+}
+
+.section-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--forest);
+  margin: 0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+
+/* Label chip */
+.label-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest);
 }
